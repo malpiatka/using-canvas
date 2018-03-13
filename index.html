@@ -8,12 +8,27 @@
 	<link rel="stylesheet" href="normalize.css">
 	<link rel="stylesheet" href="style.css">
 	<script type="text/paperscript" canvas="myCanvas">
-function onKeyDown(event){
-var maxPoint = new Point(view.size.width, view.size.height);
-var randomPoint = Point.random();
-var point = maxPoint*randomPoint;
-new Path.Circle(point, 30).fillColor="pink";
-}
+	var circles =[];
+	
+	//adding new circles while pressing keys
+	function onKeyDown(event){
+		var maxPoint = new Point(view.size.width, view.size.height);
+		var randomPoint = Point.random();
+		var point = maxPoint*randomPoint;
+		//push doesn't work 
+		circles.push(new Path.Circle(point, 30).fillColor="pink");
+	}
+	
+	var circleColor = Path.Circle(new Point(100,100),70);
+	circleColor.fillColor = "blue"
+	
+//changing circles color
+	function onFrame(event){
+		for (var i=0; i<circles.length; i++){
+			circles.fillColor.hue+=1;
+		}
+		circleColor.fillColor.hue+=1;
+	}	
 	</script>
 	</head>
 	<body>
