@@ -1,37 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta charset="UTF-8">
-	<title>figures</title>
-	<script type="text/javascript" src="paper-full.js"></script>
-	<link rel="stylesheet" href="normalize.css">
-	<link rel="stylesheet" href="style.css">
-	<script type="text/paperscript" canvas="myCanvas">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>figures</title>
+    <script type="text/javascript" src="paper-full.js"></script>
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="style.css">
+    <script type="text/paperscript" canvas="myCanvas">
 	var circles =[];
 	
 	//adding new circles while pressing keys
 	function onKeyDown(event){
 		var maxPoint = new Point(view.size.width, view.size.height);
 		var randomPoint = Point.random();
-		var point = maxPoint*randomPoint;
-		//push doesn't work 
-		circles.push(new Path.Circle(point, 30).fillColor="pink");
+		var point = maxPoint * randomPoint;
+		var newCircle = new Path.Circle(point, 50);
+		newCircle.fillColor = "blue";
+		circles.push(newCircle);
 	}
-	
-	var circleColor = Path.Circle(new Point(100,100),70);
-	circleColor.fillColor = "blue"
-	
+
 //changing circles color
 	function onFrame(event){
 		for (var i=0; i<circles.length; i++){
-			circles.fillColor.hue+=1;
+			circles[i].fillColor.hue += 1;
+			circles[i].scale(.93);
 		}
-		circleColor.fillColor.hue+=1;
-	}	
-	</script>
-	</head>
-	<body>
-		<canvas id="myCanvas" resize></canvas>
-	</body>
+	}
+
+    </script>
+</head>
+<body>
+<canvas id="myCanvas" resize></canvas>
+</body>
 </html>
